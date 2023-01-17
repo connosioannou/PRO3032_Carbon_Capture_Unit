@@ -148,13 +148,12 @@ void loop() {
     Serial.write(0xff);
     Serial.write(0xff);
     Serial.write(0xff);
-/*
+
     Serial.print("pm25V.val=");
     Serial.print(pm25);
     Serial.write(0xff);
     Serial.write(0xff);
     Serial.write(0xff);
-*/
 
     Serial.print("o3V.val=");
     Serial.print(o3);
@@ -233,8 +232,8 @@ void storeData() {
     tvocData[sizeof(tvocData) - 1] = map(tvoc, 0, 1000, 0, 255);
     memmove(co2Data, &co2Data[1], sizeof(co2Data));
     co2Data[sizeof(co2Data) - 1] = map(CO2, 0, 3000, 0, 255);
-   // memmove(pm25Data, &pm25Data[1], sizeof(pm25Data));
-    //pm25Data[sizeof(pm25Data) - 1] = map(pm25, 0, 1000, 0, 255);
+    memmove(pm25Data, &pm25Data[1], sizeof(pm25Data));
+    pm25Data[sizeof(pm25Data) - 1] = map(pm25, 0, 1000, 0, 255);
     memmove(o3Data, &o3Data[1], sizeof(o3Data));
     o3Data[sizeof(o3Data) - 1] = map(o3, 0, 1000, 0, 255);
     previousMinutes = minutes;
@@ -250,8 +249,8 @@ void storeData() {
     tvocData[sizeof(tvocData) - 1] = map(tvoc, 0, 1000, 0, 255);
     memmove(co2Data, &co2Data[1], sizeof(co2Data));
     co2Data[sizeof(co2Data) - 1] = map(CO2, 0, 3000, 0, 255);
-    //memmove(pm25Data, &pm25Data[1], sizeof(pm25Data));
-    //pm25Data[sizeof(pm25Data) - 1] = map(pm25, 0, 1000, 0, 255);
+    memmove(pm25Data, &pm25Data[1], sizeof(pm25Data));
+    pm25Data[sizeof(pm25Data) - 1] = map(pm25, 0, 1000, 0, 255);
     memmove(o3Data, &o3Data[1], sizeof(o3Data));
     o3Data[sizeof(o3Data) - 1] = map(o3, 0, 1000, 0, 255);
     previousMinutes = minutes;
@@ -293,7 +292,7 @@ void getLast24Hours() {
 void getYAxisValues() {
   maxV = 0;
   // PM2.5 Y-axis values
-  /*if (r == 0) {
+  if (r == 0) {
     // Get the max sensor value from the last 24 hours
     for (int i = 0; i < sizeof(pm25Data); i++) {
       if (maxV < map(pm25Data[i], 0, 255, 0, 1000)) {
@@ -327,7 +326,7 @@ void getYAxisValues() {
       Serial.write(0xff);
     }
   }
-  */
+  
   // TVOC Y-axis values
   if (r == 2) {
     // Get the max sensor value from the last 24 hours
@@ -467,7 +466,7 @@ void sendDataToWaveform() {
     delay(100);
     // Now depending on the selected sensor we want the values stored in the arrays
     // PM2.5
-    /*if (r == 0) {
+    if (r == 0) {
       for (int t = 0; t < sizeof(pm25Data); t++) {
         int z = 0;
         while (z != 3) {
@@ -476,7 +475,7 @@ void sendDataToWaveform() {
         }
       }
     }
-    */
+    
     // CO2
     if (r == 1) {
       for (int t = 0; t < sizeof(co2Data); t++) {
