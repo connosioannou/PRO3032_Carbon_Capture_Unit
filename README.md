@@ -1,4 +1,4 @@
-# Welcome to our repository for the Carbon Capture Unit Project
+# Welcome to our repository for the Carbon Capture Unit and Air Quality Monitor Project
 
 The goal of this project was to assemble a device to measure various quantities to quantify the air quality in real time. The main features of this device are its portability, data capture capabilities and real time display. 
 
